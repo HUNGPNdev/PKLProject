@@ -1,0 +1,63 @@
+<div><br><br>
+    <h1 class="text-center bg-secondary" style="padding: 20px; color: #fff; font-weight: bold;">Shopping Cart</h1>
+</div><br><br>
+
+<div id="wrap-inner">
+    <div id="list-cart">
+        <h3>Giỏ hàng</h3>
+        <table class="table table-bordered .table-responsive text-center">
+            <tr class="active">
+                <th scope="col" width="22.222%">Ảnh mô tả</th>
+                <th scope="col" width="22.222%">Tên sản phẩm</th>
+                <th scope="col" width="11.111%">Số lượng</th>
+                <th scope="col" width="16.6665%">Đơn giá</th>
+                <th scope="col" width="16.6665%">Thành tiền</th>
+                <th scope="col" width="11.112%">Xóa</th>
+            </tr>
+            <tr *ngFor="let p of pro">
+                <td><img class="img-responsive" style="width: 150px;" src="http://localhost:8080/image/{{p.image}}">
+                </td>
+                <td>{{p.pro_name}}</td>
+                <td>
+                    <div class="form-group">
+                        <input class="form-control" (change)="saverange($event, p.pro_id)" [value]="p.count" min="1"
+                            type="number">
+                    </div>
+                </td>
+                <td><span class="price">{{p.price}} $</span></td>
+                <td><span class="price">{{p.price * p.count}} $</span></td>
+                <td><a id="FormButton" (click)="deleteCart(p.pro_id)" class="btn">Xóa</a></td>
+            </tr>
+        </table>
+        <div class="row" id="total-price">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <h3>Tổng thanh toán: {{total}} $</h3>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <a id="FormButton" (click)="order()" class="my-btn btn">Đặt Hàng</a>&nbsp;
+            </div>
+        </div>
+    </div><br><br>
+</div>
+
+<div><br><br>
+    <h1 class="text-center bg-success" style="padding: 20px; color: #fff; font-weight: bold;">Đơn hàng đã đặt</h1>
+</div><br><br>
+
+<table class="table table-bordered .table-responsive text-center">
+    <tr class="active">
+        <th scope="col" width="22.222%">Ảnh mô tả</th>
+        <th scope="col" width="22.222%">Tên sản phẩm</th>
+        <th scope="col" width="11.111%">Số lượng</th>
+        <th scope="col" width="16.6665%">Thành tiền</th>
+    </tr>
+    <tr *ngFor="let p of od2">
+        <td>
+            <img class="img-responsive" style="width: 150px;" src="http://localhost:8080/image/{{p.image}}">
+        </td>
+        <td>{{p.pro_name}}</td>
+        <td>{{p.count}}</td>
+        <td><span class="price">{{p.price}} $</span></td>
+    </tr>
+</table>
+

@@ -1,0 +1,123 @@
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div id="logo" class="col-md-3 col-sm-12 col-xs-12">
+        <h1>
+          <a routerLink="../home"><img style="width: 115px;" src="./assets/client/img/home/logo4.png"></a>
+          <nav><a id="pull" class="btn btn-danger" href="#">
+              <i class="fa fa-bars"></i>
+            </a></nav>
+        </h1>
+      </div>
+      <div id="search" class="col-md-6 col-sm-12 col-xs-12">
+        <!-- <input type="text" name="text" placeholder="Nhập từ khóa ..." > -->
+        <!-- <input type="submit" name="submit" value="Tìm Kiếm"> -->
+      </div>
+      <div id="cart" class="col-md-2 col-sm-12 col-xs-12">
+        <a class="dropdown-toggle fa fa-user-o"  data-toggle="dropdown" href="#"></a>&nbsp;&nbsp;&nbsp;
+        <ul class="dropdown-menu">
+          <li><a class="fa fa-sign-in" *ngIf="userInfo.name == null; else loggedOut" href="login">&emsp;Sign-In</a></li>
+          <ng-template #loggedOut>
+            <li><a class="fa fa-address-card-o" href="user-update">&emsp;Edit Account</a></li>
+          </ng-template>
+          <li><a class="fa fa-sign-out" href="#" (click)="logout()">&emsp;Sign Out</a></li>
+        </ul>
+        <!-- <a class="display" routerLink="shopping-cart" style="color: #fff;">Giỏ hàng</a> -->
+        <a href="#" class="display" routerLink="shopping-cart" style="margin-left: 76px; font-size: 29px;"><i class="fa fa-table"></i></a>
+      </div>
+    </div>
+  </div>
+</header><!-- /header -->
+<section id="body">
+  <div class="container">
+    <div class="row">
+      <div id="sidebar" class="col-md-3">
+        <nav id="menu">
+          <ul>
+            <li class="menu-item">Danh mục sản phẩm</li>
+            <li class="menu-item" *ngFor="let c of categories">
+              <a routerLink="../cate-product/{{c.cata_id}}" title="">{{c.cata_name}}</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div id="banner-l" class="text-center">
+          <div class="banner-l-item" *ngFor="let b of banner; let i = index;">
+            <a href="#"><img src="http://localhost:8080/image/{{b.name}}" *ngIf="i<5" alt="" class="img-thumbnail"></a>
+          </div>
+        </div>
+      </div>
+      <div id="main" class="col-md-9">
+        <!-- main -->
+        <!-- phan slide la cac hieu ung chuyen dong su dung jquey -->
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" style="width: 848px; height: 350px;" [src]="src" alt="First slide">
+            </div>
+            <div class="carousel-item" *ngFor="let b of banner | slice:1">
+              <img class="d-block w-100" style="width: 848px; height: 350px;"
+                src="http://localhost:8080/image/{{b.name}}" alt="Second slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <router-outlet></router-outlet>
+
+
+        <!-- end main -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div id="footer-t">
+    <div class="container">
+      <div class="row">
+        <div id="logo-f" class="col-md-3 col-sm-12 col-xs-12 text-center">
+          <a routerLink="../home"><img src="./assets/client/img/home/logo4.png"></a>
+        </div>
+        <div id="about" class="col-md-3 col-sm-12 col-xs-12">
+          <h3>About us</h3>
+          <p class="text-justify">Academy thành lập năm 2009.
+            Chúng tôi chuyên cung cấp các dòng xe phân khối lớn cũ và mới cho thị trường Việt Nam.
+            Với uy tín làm việc chúng tôi luôn tự tin đi đầu về giá và chất lượng của xe.</p>
+        </div>
+        <div id="hotline" class="col-md-3 col-sm-12 col-xs-12">
+          <h3>Hotline</h3>
+          <p>Phone Sale: (+84) 0966344241</p>
+          <p>Email: hunghn.dev@gmail.com</p>
+        </div>
+        <div id="contact" class="col-md-3 col-sm-12 col-xs-12">
+          <h3>Contact Us</h3>
+          <p>Address 1: Số 4 Ngõ 488/43 - Cổ Nhuế - Hà Nội</p>
+          <p>Address 2: Số 5 Ngõ 178/71 - Thạch Thất - Hà Nội</p>
+        </div>
+      </div>
+    </div>
+    <div id="footer-b">
+      <div class="container">
+        <div class="row">
+          <div id="footer-b-l" class="col-md-6 col-sm-12 col-xs-12 text-center">
+            <p>Hùng Đây Rồi</p>
+          </div>
+          <div id="footer-b-r" class="col-md-6 col-sm-12 col-xs-12 text-center">
+            <p>© 2009 Academy. All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+      <div id="scroll">
+        <a href="#"><img src="..."></a>
+      </div>
+    </div>
+  </div>
+</footer>

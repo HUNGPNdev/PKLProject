@@ -1,0 +1,33 @@
+
+
+<div id="wrap-inner">
+    <div id="product-info">
+        <div class="clearfix"></div>
+        <h3>{{pro.pro_name}}</h3>
+        <div class="row">
+            <div id="product-img" class="col-xs-12 col-sm-12 col-md-3 text-center">
+                <img src="http://localhost:8080/image/{{pro.image}}" style="width: 260px;">
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div id="product-details" class="col-xs-12 col-sm-12 col-md-8">
+                <p>Giá: <span class="price">{{pro.price}} $</span></p>
+                <p>Bảo Hành: {{pro.guarantee}}</p>
+                <p>Phụ kiện: {{pro.part}}</p>
+                <p>Hỗ trợ: {{pro.support}}</p>
+                <p>Khuyến mại: {{pro.part}}</p>
+                <p>Hãng Xe: {{pro.cate_name}}</p>
+                <p>Tình trạng: {{ 'pro.status==true'?'Còn Hàng':'Hết Hàng' }}</p>
+                <p class="add-cart text-center"><a id="FormButton" (click)="addToCart(pro.pro_id)">Thêm vào giỏ hàng</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="product-detail">
+        <h3>Chi tiết sản phẩm</h3>
+        <p class="text-justify">{{pro.details}}.</p>
+    </div>
+    <div id="comment-list">
+        <div class="fb-comments" data-href="https://www.facebook.com/minhlongmoto/posts/892083137995906" data-width="825" data-numposts="5"></div>
+    </div>
+</div>
