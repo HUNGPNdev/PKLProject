@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">List Order</h1>
+    </div>
+</div>
+
+<div class="col-xs-12 col-md-12 col-lg-12">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Danh sách đơn hàng</div>
+        <div class="panel-body">
+            <div class="bootstrap-table">
+                <div class="table-responsive">
+                    <div class="form-group">
+                    </div>
+                    <input class="form-control" id="myInput" type="text" placeholder="Search.."><br>
+                    <table class="table table-bordered" style="margin-top:20px;">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th scope="col">Ảnh mô tả</th>
+                                <th scope="col">Tên người dùng</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <tr *ngFor="let p of od2">
+                                <td>
+                                    <img class="img-responsive" style="width: 150px;" src="http://localhost:8080/image/{{p.image}}">
+                                </td>
+                                <td>{{p.user_name}}</td>
+                                <td>{{p.pro_name}}</td>
+                                <td>{{p.count}}</td>
+                                <td><span class="price">{{p.price}} $</span></td>
+                                <a (click)="deleteById(p.od_id)"
+                                        class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Đã giao hàng</a>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

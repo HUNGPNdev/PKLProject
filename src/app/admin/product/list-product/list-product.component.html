@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Sản phẩm</h1>
+    </div>
+</div>
+
+<div class="col-xs-12 col-md-12 col-lg-12">
+				
+    <div class="panel panel-primary">
+        <div class="panel-heading">Danh sách sản phẩm</div>
+        <div class="panel-body">
+            <div class="bootstrap-table">
+                <div class="table-responsive">
+                    <a routerLink="../create-product" class="btn btn-primary">Thêm sản phẩm</a>
+                    <div class="form-group">
+                        <br><input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText">
+                      </div>
+                    <table class="table table-bordered" style="margin-top:20px;">				
+                        <thead>
+                            <tr class="bg-primary">
+                                <th>ID</th>
+                                <th width="10%">Tên Sản phẩm</th>
+                                <th>Giá sản phẩm</th>
+                                <th>Chi tiết</th>
+                                <th>Bảo hành</th>
+                                <th>phụ kiện</th>
+                                <th>Hỗ trợ</th>
+                                <th width="10%">Ảnh sản phẩm</th>
+                                <th>Trạng thái</th>
+                                <th>Danh mục</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pro of products | filter:searchText | paginate: {itemsPerPage: 4,currentPage: p}">
+                                <td>{{pro.pro_id}}</td>
+                                <td>{{pro.pro_name}}</td>
+                                <td>{{pro.price}}</td>
+                                <td>{{pro.details}}</td>
+                                <td>{{pro.guarantee}}</td>
+                                <td>{{pro.part}}</td>
+                                <td>{{pro.support}}</td>
+                                <td>
+                                    <img width="100px" src="http://localhost:8080/image/{{pro.image}}" class="thumbnail">
+                                </td>
+                                <td>{{pro.status}}</td>
+                                <td>{{pro.cate_name}}</td>
+                                <td>
+                                    <a class="btn btn-warning" (click)="goToUpdate(pro.pro_id)"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
+                                    <a (click)="deleteById(pro.pro_id)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>		
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
