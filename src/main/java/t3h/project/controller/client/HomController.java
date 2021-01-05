@@ -12,8 +12,8 @@ import t3h.project.entities.CartEntity;
 import t3h.project.entities.CategoryEntity;
 import t3h.project.entities.ProductEntity;
 import t3h.project.repository.CartRepository;
+import t3h.project.repository.OrderRepository;
 import t3h.project.service.*;
-import t3h.project.service.impl.CartSv;
 import t3h.project.service.impl.CategoryServiceImpl;
 import t3h.project.service.impl.OrderServiceImpl;
 
@@ -114,4 +114,10 @@ public class HomController {
     public ResponseEntity<List<OrderDTO>> getListOrder(@PathVariable("id") int user_id) {
         return ResponseEntity.ok(orderSv.getListOrder(user_id));
     }
+
+    @GetMapping("countCart/{id}")
+    public Integer countOrderById(@PathVariable("id") int id) {
+        return cartRp.countOrder(id);
+    }
+
 }
