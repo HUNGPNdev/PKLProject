@@ -19,11 +19,11 @@
           <li><a class="fa fa-sign-in" *ngIf="userInfo.name == null; else loggedOut" href="login">&emsp;Sign-In</a></li>
           <ng-template #loggedOut>
             <li><a class="fa fa-address-card-o" href="user-update">&emsp;Edit Account</a></li>
-          </ng-template>
-          <li><a class="fa fa-sign-out" href="#" (click)="logout()">&emsp;Sign Out</a></li>
+            <li><a class="fa fa-sign-out" href="#" (click)="logout()">&emsp;Sign Out</a></li>
+        </ng-template>
         </ul>
         <!-- <a class="display" routerLink="shopping-cart" style="color: #fff;">Giỏ hàng</a> -->
-        <a href="#" class="display" routerLink="shopping-cart" style="margin-left: 76px; font-size: 29px;"><i class="fa fa-table"></i></a>
+        <a href="#" class="display" routerLink="shopping-cart" style="margin-left: 75px; padding: 10px;">{{Count}}</a>
       </div>
     </div>
   </div>
@@ -69,9 +69,8 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
+        <!-- <router-outlet (count)="Count=$event"></router-outlet> -->
         <router-outlet></router-outlet>
-
 
         <!-- end main -->
       </div>

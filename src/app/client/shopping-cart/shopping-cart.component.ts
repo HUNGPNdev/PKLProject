@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { Order } from 'src/entities/product/order';
 import { Product } from 'src/entities/product/product';
 import { ProductService } from 'src/entities/product/product.service';
@@ -20,7 +21,8 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private userSv: UserService,
-    private proSv: ProductService
+    private proSv: ProductService,
+    private app: AppComponent
   ) { }
 
   ngOnInit(): void {
@@ -45,12 +47,15 @@ export class ShoppingCartComponent implements OnInit {
     uploadData.append('user_id', this.userSv.getUserInfo().id);
     uploadData.append('count', e.target.value);
     this.proSv.updateCart(id, uploadData).subscribe();
-    this.loadCart();
+    setTimeout(() =>{
+      this.loadCart();
+    }, 500 )
   }
 
   deleteCart(pro_id: number) {
     if(confirm('Bạn có chắc muốn xóa?')) {
       this.proSv.deleteCart(this.userSv.getUserInfo().id, pro_id).subscribe( data => {
+        this.app.changeCount();
         this.loadCart();
       });
     }

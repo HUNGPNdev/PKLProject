@@ -51,4 +51,8 @@ export class ProductService {
     return this.httpClient.get<Order[]>(`${this.Url}/order/${id}`);
   }
 
+  countCart(id: number) {
+    return this.httpClient.get<any>(`${this.Url}/countCart/${id}`);
+  }
+
 }

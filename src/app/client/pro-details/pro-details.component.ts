@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { Cart } from 'src/entities/product/cart';
 import { Product } from 'src/entities/product/product';
 import { ProductService } from 'src/entities/product/product.service';
@@ -18,6 +19,7 @@ export class ProDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private userSv: UserService,
     private router: Router,
+    private app: AppComponent,
     private proSv: ProductService
   ) { }
 
@@ -35,7 +37,10 @@ export class ProDetailsComponent implements OnInit {
   addToCart(id: number) {
     if (this.userSv.getUserInfo().id != null) {
       this.proSv.addCart(new Cart(this.userSv.getUserInfo().id, id)).subscribe();
+      setTimeout(() => {
+      this.app.changeCount();
       this.router.navigate(['shopping-cart']);
+      }, 500);
     } else {
       alert('Vui lòng đăng nhập!');
     }
