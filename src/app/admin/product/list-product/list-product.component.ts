@@ -36,7 +36,9 @@ export class ListProductComponent implements OnInit {
   deleteById(id: number) {
     if(confirm('Bạn có chắc chắn muốn xóa?')) {
       this.proSv.deleteById(id).subscribe( data => {
-        this.getAllProduct();
+        setTimeout(() => {
+          this.getAllProduct();
+        }, 500);
       })
     }
   }

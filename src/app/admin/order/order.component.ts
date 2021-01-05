@@ -17,16 +17,19 @@ export class OrderComponent implements OnInit {
   }
 
   loadOrder() {
-    this.proSv.getListOrder().subscribe( data => {
+    this.proSv.getListOrder().subscribe(data => {
       this.od2 = data;
     });
   }
 
   deleteById(id: number) {
-    if(confirm('Đã hoàn thành đơn hàng?')) {
+    if (confirm('Đã hoàn thành đơn hàng?')) {
       this.proSv.deleteOrderById(id).subscribe();
     }
-    this.loadOrder();
+    setTimeout(() => {
+      this.loadOrder();
+    }, 500);
+
   }
 
 }
