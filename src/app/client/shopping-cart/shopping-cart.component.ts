@@ -26,17 +26,17 @@ export class ShoppingCartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.userSv.getUserInfo().id != null) {
+    if (this.userSv.getUserInfo().id != null) {
       this.loadCart();
       this.loadOrder(this.userSv.getUserInfo().id);
     }
   }
 
   loadCart() {
-    this.proSv.getProductByUserId(this.userSv.getUserInfo().id).subscribe( data => {
+    this.proSv.getProductByUserId(this.userSv.getUserInfo().id).subscribe(data => {
       this.pro = data;
       this.total = 0;
-      data.forEach( c => {
+      data.forEach(c => {
         this.total += c.count * c.price;
       });
     });
@@ -47,14 +47,14 @@ export class ShoppingCartComponent implements OnInit {
     uploadData.append('user_id', this.userSv.getUserInfo().id);
     uploadData.append('count', e.target.value);
     this.proSv.updateCart(id, uploadData).subscribe();
-    setTimeout(() =>{
+    setTimeout(() => {
       this.loadCart();
-    }, 500 )
+    }, 500)
   }
 
   deleteCart(pro_id: number) {
-    if(confirm('Bạn có chắc muốn xóa?')) {
-      this.proSv.deleteCart(this.userSv.getUserInfo().id, pro_id).subscribe( data => {
+    if (confirm('Bạn có chắc muốn xóa?')) {
+      this.proSv.deleteCart(this.userSv.getUserInfo().id, pro_id).subscribe(data => {
         this.app.changeCount();
         this.loadCart();
       });
@@ -62,19 +62,26 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   order() {
-    this.proSv.getOrderByUserId(this.userSv.getUserInfo().id).subscribe( data => {
-      this.od = data;
-      // console.log(data);
-      this.proSv.orderPro(this.userSv.getUserInfo().id, this.od).subscribe();
-    });
-    this.loadCart();
-    this.loadOrder(this.userSv.getUserInfo().id);
+    if (this.pro.length != 0) {
+      this.proSv.getOrderByUserId(this.userSv.getUserInfo().id).subscribe(data => {
+        this.od = data;
+        this.proSv.orderPro(this.userSv.getUserInfo().id, this.od).subscribe();
+      });
+      setTimeout(() => {
+        this.loadCart();
+        this.loadOrder(this.userSv.getUserInfo().id);
+      }, 1000);
+    } else {
+      alert("Giỏ hàng rỗng!");
+    }
+
   }
 
   loadOrder(id: number) {
-    this.proSv.getListOrder(id).subscribe( data => {
+    this.proSv.getListOrder(id).subscribe(data => {
       this.od2 = data;
     });
+
   }
 
 }

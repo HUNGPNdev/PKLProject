@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
         this.userSv.saveUserInfo(data);
         this.userInfo = this.userSv.getUserInfo();
       });
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 900)
     }, error => {
       // this.errorMessage = error.error.message;
       this.isLoginFailed = true;
